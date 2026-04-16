@@ -16,8 +16,11 @@ app.use(express.json());
 
 app.use("/uploads", express.static("uploads"));
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/firstcry")
+//mongoose
+//  .connect("mongodb://127.0.0.1:27017/firstcry")
+  
+  mongoose.connect(process.env.MONGO_URL)
+
   .then(() => {
     console.log(" MongoDB connected successfully");
   })
@@ -36,8 +39,8 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-const PORT = 3001;
-
+//const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 let generatedOtp = "";
 
